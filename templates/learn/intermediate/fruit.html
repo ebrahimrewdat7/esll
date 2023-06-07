@@ -1,0 +1,90 @@
+{% extends base_template_name %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content m-2">
+  <div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Fruit Sign Languages</h3>
+        </div>
+        </div>
+  <ul class="nav nav-justified justify-content-center nav-tabs mt-0" id="myTab">
+    <li class="nav-item">
+        <a href="#home" class="nav-link active" data-bs-toggle="tab">Image Mapping</a>
+    </li>
+    <li class="nav-item">
+      <a href="#profile" class="nav-link" data-bs-toggle="tab">Lecture Video</a>
+       
+    </li>
+
+</ul>
+  <div class="tab-content">
+
+    <div class="tab-pane fade show active" id="home">
+      <div class="container-fluid m-2">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+      {% for all_fruits in all_fruits %}
+          <!-- ./col -->
+          <div class="col-lg-2 col">
+            <!-- small box -->
+              <div class="small-box bg-dark">
+                <div class="inner">
+                  <h3 style="text-align: center; "><img src="{{all_fruits.signImage.url}}" width="100"/></h3>
+                  
+                  <h3 style="text-align: center; font-weight: bold;">{{all_fruits.textForSign}}</h3>
+                </div>
+
+
+             
+
+            </div>
+          </div>
+          <!-- ./col -->
+          {% endfor %}
+        </div>
+          <!-- ./row -->
+      </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="tab-pane fade" id="profile">
+    
+        <div class="container-fluid m-2">
+          <!-- Small boxes (Stat box) -->
+          <div class="row">
+        {% for beginner in beginner %}
+            <!-- ./col -->
+            <div class="col-lg-6 col">
+              <!-- small box -->
+                <div class="small-box bg-dark">
+                  <div class="inner">
+                    <h3 style="text-align: center; "><video class="rounded embed-responsive-item .embed-responsive-16by9" width="450" height="300" controls="controls" >
+                      <source src="{{beginner.video.url}}" type="video/mp4">
+                   
+                    Your browser does not support the video tag.
+                    </video></h3>
+
+                    
+                    <h5 style="text-align: center; font-weight: bold;">{{beginner.caption}}</h5>
+                  </div>
+
+
+               
+
+              </div>
+            </div>
+            <!-- ./col -->
+            {% endfor %}
+          </div>
+            <!-- ./row -->
+        </div><!-- /.container-fluid -->
+        
+    </div>
+ 
+
+
+      </section>
+
+  {% endblock main_content %}

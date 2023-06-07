@@ -1,0 +1,263 @@
+{% include "header.html" %}
+{% load static %}
+<style>
+    .gradient-custom {
+        /* fallback for old browsers */
+        background: #f093fb;
+        
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to bottom right, rgba(240, 147, 251, 1), rgba(245, 87, 108, 1));
+        
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to bottom right, rgba(240, 147, 251, 1), rgba(245, 87, 108, 1))
+        }
+        
+
+</style>
+<body>
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+      <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+          <h2 class="m-0 text-primary"><img src="{% static 'images/esl_logo.png' %}" 
+              alt="ESLL Logo" class="img-circle"
+              style="width: 50px; 
+              opacity: .8;">
+            </i>Ethiopian Sign Language Learning</h2>
+      </a>
+      <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav ms-auto p-4 p-lg-0">
+              <a href="{% url 'home' %}" class="nav-item nav-link">Home</a>
+              <a href="#" class="nav-item nav-link">About</a>
+              <a href="#" class="nav-item nav-link">Courses</a>
+              <a href="#" class="nav-item nav-link">Contact</a>
+              <div class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Signup</a>
+                  <div class="dropdown-menu fade-down m-0">
+                    <a href="{% url 'signup_learner' %}" class="dropdown-item">As a Learner</a>
+                    <a href="{% url 'signup_instructor' %}" class="dropdown-item active">As an Instructor</a>
+                  </div>
+              </div>
+              <a href="{% url 'login' %}" class="nav-item nav-link">Login<i class="fa fa-arrow-right ms-3"></i></a>
+  
+              </div>
+              
+          </div>
+
+      </div>
+  </nav>
+  <!-- Navbar End -->
+<section class="gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12 col-lg-9 col-xl-7">
+          <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+            <div class="card-body p-4 p-md-5">
+              <form action="signup_instructor_save" method="POST"  enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="d-flex align-items-center mb-3 pb-1">
+                    <img class="img-responsive rounded-circle bg-light" style="width:10%" src="{% static 'images/esl_logo.png' %}" alt="">
+                    <span class="h2 fw-bold mb-0">ESLL</span>
+                    
+                  </div>
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Instructor Signup Form</h5>
+                  {% if messages %}
+                  <div class="form-group">
+                  <div class="col-12">
+                      {% for message in messages %}
+
+                          <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                          {{ message }}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                          </div>
+                  
+                      {% endfor %}
+                  </div>
+                  </div>
+                  {% endif %}
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+  
+                    <div class="form-floating mb-3">
+                      {% render_field form.first_name class="form-control form-control-lg" placeholder="First Name" type="text" %}
+                      <!-- <input type="text" id="firstName" required class="form-control form-control-lg" name="first_name" placeholder="First Name"/> -->
+                      <label  for="first_Name">First Name</label>
+                    </div>
+
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-floating mb-3">
+                      {% render_field form.last_name class="form-control form-control-lg" placeholder="Last Name" %}
+                        <!-- <input type="text" id="lastName" class="form-control form-control-lg" name="last_name" placeholder="Last Name"/> -->
+                        <label  for="lasttName">Last Name</label>
+                    </div>
+  
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+  
+                    <div class="form-floating mb-3">
+                      {% render_field form.email id="id_email" class="form-control form-control-lg" placeholder="Email" %}
+                        <!-- <input type="email" id="email" class="form-control form-control-lg" name="email" placeholder="Email"/> -->
+                        <label  for="email">Email</label>
+                    </div>
+  
+                  </div>
+          
+                  <div class="col-md-6 mb-3">
+                    <div class="form-floating mb-3">
+                      {% render_field form.username id="id_username" class="form-control form-control-lg" placeholder="User Name" %}
+                      <!-- <input type="username" id="username" class="form-control form-control-lg" name="username" placeholder="User Name"/> -->
+                      <label  for="username">User Name</label>
+                  </div>
+
+                     
+                  </div>
+  
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+  
+                    <div class="form-floating mb-3">
+                      {% render_field form.phoneNo class="form-control form-control-lg" placeholder="Phone Number" %}
+                      <!-- <input  type="tel" id="phone"  class="form-control form-control-lg" name="phoneNo" placeholder="Phone Number"/> -->
+                      <label  for="phone">Phone Number</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      {% render_field form.document class="form-control form-control-lg" placeholder="Document" %}
+                        <!-- <input type="file" id="document" class="form-control form-control-lg" name="document" placeholder="Document"/> -->
+                        <label  for="document">Document</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      {% render_field form.id_pic class="form-control form-control-lg" placeholder="ID Image" %}
+                        <!-- <input type="file" id="idImage" class="form-control form-control-lg" accept="image/*" name="id_pic" placeholder="ID Image"/> -->
+                        <label  for="idImage">ID Image</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+  
+                    <div class="form-floating mb-3">
+                      {% render_field form.description style="height: 200px;" class="form-control form-control-lg" placeholder="Description"  %}
+                        <!-- <textarea style="height: 200px;" id="description" class="form-control form-control-lg" name="description" placeholder="Description">
+
+                        </textarea> -->
+                        
+                        <label  for="description">Description</label>
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+  
+                    <div class="form-floating mb-3">
+                      {% render_field form.password1 class="form-control form-control-lg" placeholder="Password" %}
+                        <!-- <input type="password" id="password" class="form-control form-control-lg" name="password1" placeholder="Password"/> -->
+                        <label  for="password">Password</label>
+                    </div>
+  
+                  </div>
+                  <div class="col-md-6 mb-3">
+  
+                    <div class="form-floating mb-3">
+                      {% render_field form.password2 class="form-control form-control-sm" placeholder="Retype Password" %}
+                      <!-- <input type="password" id="password" class="form-control form-control-lg" name="password2" placeholder="Retype Password"/> -->
+                      <label  for="password">Retype Password</label>
+                    </div>
+  
+                  </div>
+                </div>
+  
+                <div class="mt-3 pt-2">
+                  <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                  <a href="{% url 'login' %}" class="btn btn-primary btn-lg"><i class="fa fa-arrow-left me-3"></i>Back to Login</a>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% include "footer.html" %}
+  {% block custom_js %}
+    {% comment %} Checking if email and username already exists or not usin Ajax {% endcomment %}
+
+    <script>
+        $(document).ready(function(){
+            // keyup event will be triggered when user leaves keyboard
+            $("#id_email").keyup(function(){
+                var email = $(this).val();
+
+                if(email!=""){
+                    $.ajax({
+                        url : '{% url 'check_email_exist' %}',
+                        type : 'POST',
+                        data : {email:email}
+                    })
+                    .done(function(response){
+                        //console.log(response);
+
+                        if(response == "True"){
+                            $(".email_error").remove();
+                            $("<span class='email_error' style='color: red; padding: 5px; font-weight: bold;'> Email Not Available. </span>").insertAfter("#id_email")
+                        }
+                        else{
+                            $(".email_error").remove();
+                            $("<span class='email_error' style='color: green; padding: 5px; font-weight: bold;'> Email Available. </span>").insertAfter("#id_email")
+                        }
+                    })
+
+                    .fail(function(){
+                        console.log("Failed");
+                    })
+                }
+                else{
+                    $(".email_error").remove();
+                }
+                
+            })
+
+            $("#id_username").keyup(function(){
+                var username = $(this).val();
+                
+                if(username!=""){
+                    $.ajax({
+                        url : '{% url 'check_username_exist' %}',
+                        type : 'POST',
+                        data : {username:username}
+                    })
+                    .done(function(response){
+                        //console.log(response);
+
+                        if(response == "True"){
+                            $(".username_error").remove();
+                            $("<span class='username_error' style='color: red; padding: 5px; font-weight: bold;'> Username Not Available. </span>").insertAfter("#id_username")
+                        }
+                        else{
+                            $(".username_error").remove();
+                            $("<span class='username_error' style='color: green; padding: 5px; font-weight: bold;'> Username Available. </span>").insertAfter("#id_username")
+                        }
+                    })
+
+                    .fail(function(){
+                        console.log("Failed");
+                    })
+                }
+                else{
+                    $(".username_error").remove();
+                }
+                
+            })
+        })
+    </script>
+
+  {% endblock custom_js %}

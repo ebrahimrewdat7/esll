@@ -1,0 +1,57 @@
+{% include "header.html" %}
+{% load static %}
+<body>
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+      <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+          <h2 class="m-0 text-primary"><img src="{% static 'images/esl_logo.png' %}" 
+              alt="ESLL Logo" class="img-circle"
+              style="width: 50px; 
+              opacity: .8;">
+            </i>Ethiopian Sign Language Learning</h2>
+      </a>
+      <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav ms-auto p-4 p-lg-0">
+              <a href="{% url 'home' %}" class="nav-item nav-link">Home</a>
+              <a href="{% url 'about' %}" class="nav-item nav-link active">About</a>
+              <a href="{% url 'courses' %}" class="nav-item nav-link ">Courses</a>
+              <a href="#" class="nav-item nav-link">Contact</a>
+              <div class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Signup</a>
+                  <div class="dropdown-menu fade-down m-0">
+                    <a href="{% url 'signup_learner' %}" class="dropdown-item">As a Learner</a>
+                    <a href="{% url 'signup_instructor' %}" class="dropdown-item">As an Instructor</a>
+                  </div>
+              </div>
+              <a href="{% url 'login' %}" class="nav-item nav-link ">Login<i class="fa fa-arrow-right ms-3"></i></a>
+
+              </div>
+              
+          </div>
+
+      </div>
+  </nav>
+
+  <!-- Navbar End -->
+<section class="gradient-custom" style="background-color: #9A616D;">
+   <div class="container py-5">      
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h5>About</h5>
+                </div>
+            </div>
+            
+    
+        </div>
+
+    </div>
+    </div>
+
+</section>
+  {% include "footer.html" %}

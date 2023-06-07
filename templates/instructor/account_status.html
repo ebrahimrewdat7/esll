@@ -1,0 +1,34 @@
+{% extends 'instructor/base_template.html' %}
+
+{% block main_content %}
+
+{% load static %}
+
+
+<div class="form-group">
+<div class="col-12">
+   
+
+        <div class="card">
+        <div class="card-body">
+            <span>Account Approval Status</span>
+     
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            {% if status == False %}
+            <span aria-hidden="true">Pending</span>
+            {% endif %}
+
+            {% if status == True %}
+            <span aria-hidden="true">Success</span>
+            {% endif %}
+           
+
+        </button>
+        </div>
+        </div>
+
+</div>
+</div>
+
+
+  {% endblock main_content %}

@@ -1,0 +1,186 @@
+{% extends 'admin/base_template.html' %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+    <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <!-- ./col -->
+          <div class="row">
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-info">
+                <div class="inner">
+                  <h3>{{ all_learner_count }}</h3>
+
+                  <p>Total Learner</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="{% url 'manage_learner' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-warning">
+                <div class="inner">
+                  <h3>{{ all_instructor_count }}</h3>
+
+                  <p>Total Instructor</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="{% url 'manage_instructor' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-danger">
+                <div class="inner">
+                  <h3>{{ all_unapproved_instructor_count }}</h3>
+
+                  <p>Instructor Requests</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="{% url 'approve_instructor' %}" class="small-box-footer"> More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+  </section>
+
+  {% endblock main_content %}
+
+  {% block custom_js %}
+
+  <script>
+    $(document).ready(function(){
+      var donutChartCanvas = $('#pieChart').get(0).getContext('2d')
+      var pieData        = {
+        labels: [
+            'Learners',
+            'Instructors',
+        ],
+        datasets: [
+          {
+            data: [{{ all_learner_count }}, {{ all_instructor_count }}],
+            backgroundColor : ['#f56954', '#00a65a'],
+          }
+        ]
+      }
+
+      //-------------
+      //- PIE CHART -
+      //-------------
+      // Get context with jQuery - using jQuery's .get() method.
+      var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+      var pieData        = pieData;
+      var pieOptions     = {
+        maintainAspectRatio : false,
+        responsive : true,
+      }
+      //Create pie or douhnut chart
+      // You can switch between pie and douhnut using the method below.
+      var pieChart = new Chart(pieChartCanvas, {
+        type: 'pie',
+        data: pieData,
+        options: pieOptions      
+      })
+
+
+      // Get context with jQuery - using jQuery's .get() method.
+      var course_name_list = {{ level_name_list|safe }}
+      var subject_count_list = {{ language_count_list }}
+      var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+      var donutData        = {
+        labels: level_name_list,
+        datasets: [
+          {
+            data: subject_count_list,
+            backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+          }
+        ]
+      }
+      var donutOptions     = {
+        maintainAspectRatio : false,
+        responsive : true,
+      }
+      //Create pie or douhnut chart
+      // You can switch between pie and douhnut using the method below.
+      var donutChart = new Chart(donutChartCanvas, {
+        type: 'doughnut',
+        data: donutData,
+        options: donutOptions      
+      })
+
+
+      // Total Learner in Each Level
+      //var donutChartCanvas = $('#pieChart2').get(0).getContext('2d')
+      var learner_count_list_in_course = {{ learner_count_list_in_course }}
+      var pieData2 = {
+        labels: course_name_list,
+        datasets: [
+          {
+            data: learner_count_list_in_course,
+            backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+          }
+        ]
+      }
+
+      //-------------
+      //- PIE CHART -
+      //-------------
+      // Get context with jQuery - using jQuery's .get() method.
+      var pieChartCanvas2 = $('#pieChart2').get(0).getContext('2d')
+      var pieData2        = pieData2;
+      var pieOptions2     = {
+        maintainAspectRatio : false,
+        responsive : true,
+      }
+
+      var pieChart2 = new Chart(pieChartCanvas2, {
+        type: 'pie',
+        data: pieData2,
+        options: pieOptions2      
+      })
+
+      // Total Learner in Each Level
+      var student_count_list_in_subject = {{ learner_count_list_in_subject }}
+      var learner_list = {{ learner_list|safe }}
+      var pieData3 = {
+        labels: subject_list,
+        datasets: [
+          {
+            data: learner_count_list_in_level,
+            backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+          }
+        ]
+      }
+
+      //-------------
+      //- PIE CHART -
+      //-------------
+      // Get context with jQuery - using jQuery's .get() method.
+      var pieChartCanvas3 = $('#pieChart3').get(0).getContext('2d')
+      var pieData3        = pieData3;
+      var pieOptions3     = {
+        maintainAspectRatio : false,
+        responsive : true,
+      }
+
+      var pieChart3 = new Chart(pieChartCanvas3, {
+        type: 'pie',
+        data: pieData3,
+        options: pieOptions3      
+      })
+      </script>
+
+  {% endblock custom_js %}

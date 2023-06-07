@@ -1,0 +1,44 @@
+{% extends 'learner/base_template.html' %}
+{% block main_content %}
+<section class="content">
+  <div class="container-fluid">
+  {% include 'learner/_header.html' with active='new' %}
+  {% for message in messages %}
+  <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endfor %}
+  <div class="card">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th>Quiz</th>
+          <th>Level</th>
+          <th>Length</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for quiz in quizzes %}
+          <tr>
+            <td class="align-middle">{{ quiz.name }}</td>
+            <td class="align-middle">{{ quiz.level.get_html_badge }}</td>
+            <td class="align-middle">{{ quiz.questions_count }} questions</td>
+            <td class="text-right">
+              <a href="{% url 'learners:take_quiz' quiz.pk %}" class="btn btn-primary">Start quiz</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">No quiz right now.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
+  {% endblock main_content %}

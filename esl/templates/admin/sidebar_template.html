@@ -1,0 +1,175 @@
+{% load static %}
+
+<aside class="main-sidebar sidebar-mini sidebar-dark-primary elevation-2">
+      <!-- Brand Logo -->
+
+      <a href="{% url 'admin_home' %}" class="brand-link">
+        <img src="{% static 'images/esl_logo.png' %}" alt="EthSLL Logo" class="brand-image img-circle elevation-2"
+            style="opacity: .8">
+        <span class="brand-text font-weight-light">ESLL</span>
+      </a>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+            <a href="{% url 'admin_profile' %}" class="d-block">{{ user.first_name }} {{ user.last_name }}</a>
+    
+          </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"
+           id="accordionSidebar"
+          >
+            <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+
+            <li class="nav-item">
+              {% url 'admin_home' as admin_home %}
+              <a href="{{ admin_home }}" class="nav-link {% if request.path == admin_home %} active {% endif %}">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Home
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'manage_instructor' as manage_instructor %}
+              {% url 'manage_learner' as manage_learner %}
+              {% url 'edit_instructor' instructor_id=id as edit_instructor %}
+              <a href="{{ manage_instructor }}" class="collapsed nav-link {% if request.path == manage_learner %} active {% endif %} {% if request.path == manage_instructor %} active {% endif %} {% if request.path == edit_instructor %} active {% endif %}"
+              data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Manage Users
+                </p>
+              </a>
+
+                <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{% url 'manage_learner' %}">Learner</a>
+                        <a class="collapse-item" href="{% url 'manage_instructor' %}">Instructor</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+              {% url 'manage_beginner_sign' as manage_beginner_sign %}
+              {% url 'manage_intermediate_sign' as manage_intermediate_sign %}
+              {% url 'manage_advanced_sign' as manage_advanced_sign %}
+            
+              <a href="#" class="collapsed nav-link {% if request.path == manage_beginner_sign %} active {% endif %} {% if request.path == manage_intermediate_sign %} active {% endif %} {% if request.path == manage_advanced_sign %} active {% endif %}
+              
+              
+              "
+              data-toggle="collapse" data-target="#collapseSign" aria-expanded="true" aria-controls="collapseSign">
+                <i class="nav-icon fas fa-cog"></i>
+                <p>
+                  Manage Sign
+                </p>
+              </a>
+
+                <div id="collapseSign" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ manage_beginner_sign }}">Beginner</a>
+                        <a class="collapse-item" href="{{ manage_intermediate_sign }}">Intermediate</a>
+                        <a class="collapse-item" href="{{ manage_advanced_sign }}">Advanced</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+              {% url 'approve_instructor' as approve_instructor %}
+
+              {% url 'approve_instructor_detail' id as approve_instructor_detail %}
+
+
+
+
+              <a href="{{ approve_instructor }}" class="nav-link {% if request.path == approve_instructor%} active {% endif %}
+                   {% if request.path == approve_instructor_detail %} active {% endif %} ">
+                <i class="nav-icon fas fa-check"></i>
+                <p>
+                  Approve Instructor
+               </p>
+              </a>
+            </li>
+
+
+
+
+            <li class="nav-item">
+
+
+            <li class="nav-item">
+              {% url 'advanced' as advanced %}
+              {% url 'beginner' as beginner %}
+              {% url 'eng_alphabet' as eng_alphabet %}
+              
+              {% url 'intermediate' as intermediate %}
+              <a href="#" class="nav-link {% if request.path == intermediate %} active {% endif %}
+                   {% if request.path == beginner %} active {% endif %}
+                   {% if request.path == eng_alphabet %} active {% endif %}
+                   {% if request.path == advanced %} active {% endif %}"
+                   data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour"
+                   >
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                  Learn
+                </p>
+              </a>
+              <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{ beginner }}">Beginner</a>
+                    <a class="collapse-item" href="{{ intermediate }}">Intermediate</a>
+                    <a class="collapse-item" href="{{ advanced }}">Advanced</a>
+                </div>
+            </div>
+            </li>
+            <li class="nav-item">
+              {% url 'lobby' as lobby %}
+              <a href="{{ lobby }}" class="nav-link {% if request.path == lobby %} active {% endif %}">
+                <i class="nav-icon fas fa-video"></i>
+                <p>
+                  Video Call
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'index' as index %}
+              <a href="{{ index }}" class="nav-link {% if request.path == index %} active {% endif %}">
+                <i class="nav-icon fas fa-comment-dots"></i>
+                <p>
+                  Chat
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'learner_feedback_message' as learner_feedback_message %}
+              <a href="{{ learner_feedback_message }}" class="nav-link {% if request.path == learner_feedback_message %} active {% endif %}">
+                <i class="nav-icon fa fa-commenting"></i>
+                <p>
+                  Learner Feedback({{ learner_feedback }})
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'instructor_feedback_message' as instructor_feedback_message %}
+              <a href="{{ instructor_feedback_message }}" class="nav-link {% if request.path == instructor_feedback_message %} active {% endif %}">
+                <i class="nav-icon fa fa-commenting"></i>
+                <p>
+                  Instructor Feedback({{ instructor_feedback }}) 
+                </p>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>

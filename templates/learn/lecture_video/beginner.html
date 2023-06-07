@@ -1,0 +1,165 @@
+{% extends base_template_name %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+          <!-- Small boxes (Stat box) -->
+          <div class="row">
+        {% for beginner in beginner %}
+            <!-- ./col -->
+            <div class="col-lg-6 col">
+              <!-- small box -->
+                <div class="small-box bg-dark">
+                  <div class="inner">
+                    <h3 style="text-align: center; "><video class="rounded embed-responsive-item .embed-responsive-16by9" width="450" height="300" controls="controls" >
+                      <source src="{{beginner.video.url}}" type="video/mp4">
+                   
+                    Your browser does not support the video tag.
+                    </video></h3>
+
+                    
+                    <h5 style="text-align: center; font-weight: bold;">{{beginner.caption}}</h5>
+                  </div>
+
+
+               
+
+              </div>
+            </div>
+            <!-- ./col -->
+            {% endfor %}
+          </div>
+            <!-- ./row -->
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}
+
+  {% block custom_js %}
+
+  <script>
+    $(document).ready(function(){
+      var donutChartCanvas = $('#pieChart').get(0).getContext('2d')
+      var pieData        = {
+        labels: [
+            'Learners',
+            'Instructors',
+        ],
+        datasets: [
+          {
+            data: [{{ all_learner_count }}, {{ all_instructor_count }}],
+            backgroundColor : ['#f56954', '#00a65a'],
+          }
+        ]
+      }
+
+      //-------------
+      //- PIE CHART -
+      //-------------
+      // Get context with jQuery - using jQuery's .get() method.
+      var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+      var pieData        = pieData;
+      var pieOptions     = {
+        maintainAspectRatio : false,
+        responsive : true,
+      }
+      //Create pie or douhnut chart
+      // You can switch between pie and douhnut using the method below.
+      var pieChart = new Chart(pieChartCanvas, {
+        type: 'pie',
+        data: pieData,
+        options: pieOptions      
+      })
+
+
+      // Get context with jQuery - using jQuery's .get() method.
+      var course_name_list = {{ level_name_list|safe }}
+      var subject_count_list = {{ language_count_list }}
+      var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+      var donutData        = {
+        labels: level_name_list,
+        datasets: [
+          {
+            data: subject_count_list,
+            backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+          }
+        ]
+      }
+      var donutOptions     = {
+        maintainAspectRatio : false,
+        responsive : true,
+      }
+      //Create pie or douhnut chart
+      // You can switch between pie and douhnut using the method below.
+      var donutChart = new Chart(donutChartCanvas, {
+        type: 'doughnut',
+        data: donutData,
+        options: donutOptions      
+      })
+
+
+      // Total Learner in Each Level
+      //var donutChartCanvas = $('#pieChart2').get(0).getContext('2d')
+      var learner_count_list_in_course = {{ learner_count_list_in_course }}
+      var pieData2 = {
+        labels: course_name_list,
+        datasets: [
+          {
+            data: learner_count_list_in_course,
+            backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+          }
+        ]
+      }
+
+      //-------------
+      //- PIE CHART -
+      //-------------
+      // Get context with jQuery - using jQuery's .get() method.
+      var pieChartCanvas2 = $('#pieChart2').get(0).getContext('2d')
+      var pieData2        = pieData2;
+      var pieOptions2     = {
+        maintainAspectRatio : false,
+        responsive : true,
+      }
+
+      var pieChart2 = new Chart(pieChartCanvas2, {
+        type: 'pie',
+        data: pieData2,
+        options: pieOptions2      
+      })
+
+      // Total Learner in Each Level
+      var student_count_list_in_subject = {{ learner_count_list_in_subject }}
+      var learner_list = {{ learner_list|safe }}
+      var pieData3 = {
+        labels: subject_list,
+        datasets: [
+          {
+            data: learner_count_list_in_level,
+            backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+          }
+        ]
+      }
+
+      //-------------
+      //- PIE CHART -
+      //-------------
+      // Get context with jQuery - using jQuery's .get() method.
+      var pieChartCanvas3 = $('#pieChart3').get(0).getContext('2d')
+      var pieData3        = pieData3;
+      var pieOptions3     = {
+        maintainAspectRatio : false,
+        responsive : true,
+      }
+
+      var pieChart3 = new Chart(pieChartCanvas3, {
+        type: 'pie',
+        data: pieData3,
+        options: pieOptions3      
+      })
+  </script>
+
+  {% endblock custom_js %}

@@ -1,0 +1,97 @@
+
+
+<!DOCTYPE html>
+
+{% load static %}
+<html>
+    <head>
+        <title>CHMSC LMS</title>
+		<meta name="description" content="Learning Management System">
+		<meta name="keywords" content="CHMSC LMS,CHMSCLMS,CHMSC,LMS,CHMSCLMS.COMXA">
+		<meta name="author" content="JOHN KEVIN LORAYNA">
+		<meta charset="UTF-8">
+
+
+		<style>
+    body{
+  /* The image used */
+
+
+  background-image: {% static include "images/index.jpg" %};
+
+
+
+  /* Add the blur effect */
+   background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(120,100,100, 1.0); /* Black w/opacity/see-through */
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+footer{
+ color: #fff;
+}
+footer .social-links a:hover {
+
+  color: #fff;
+  text-decoration: none;
+}
+footer .social-links a {
+  font-size: 25px;
+  display: inline-block;
+
+   color: #fff;
+  line-height: 1;
+  padding: 8px 0;
+  margin-right: 4px;
+  border-radius: 5px;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  transition: 0.3s;
+}
+.title{
+
+  width: 800px;
+
+}
+.title h3{
+  line-height: 50px;
+  text-align: center;
+}
+.index-footer{
+  display: flex;
+  height: 50px;
+  background-color: hsla(120, 0%, 0%, 0.7);
+  box-shadow: 0px 1px 3px;
+  margin-top: -50px;
+
+}
+.navbar{
+  float: right;
+  margin-left: 35%;
+}
+#login .index-footer h3{
+  padding-left: 100px;
+  color: #fff;
+
+font-family: 'TR Century Gothic';
+  src: url('TR Century Gothic.ttf');
+
+}
+
+ul li .active{
+  background-color: #555555;
+}
+
+
+</style>
+    </head>
+	<body></body>
+</html>

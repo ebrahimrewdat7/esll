@@ -1,0 +1,135 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ESLLR</title>
+		<meta name="description" content="Learning Management System">
+		<meta name="keywords" content="CHMSC LMS,CHMSCLMS,CHMSC,LMS,CHMSCLMS.COMXA">
+		<meta name="author" content="JOHN KEVIN LORAYNA">
+		<meta charset="UTF-8">
+        <link  rel="stylesheet" media="screen" href="{% static "web-fonts-with-css/css/fontawesome-all.min.css" %}"/>
+
+
+        <link  rel="stylesheet" media="screen" href="{% static "assets/styles.css"%}"/>
+        <link  rel="stylesheet" media="screen" href="{% static "bootstrap/css/index.css" %}"/>
+        <link  rel="stylesheet" media="screen" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
+        <link  rel="stylesheet" media="screen" href="{% static "bootstrap/css/bootstrap-responsive.min.css" %}"/>
+		<style>
+    body{
+    background-image: url('{% static "images/index.jpg" %}');
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(120,100,100, 1.0); /* Black w/opacity/see-through */
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+footer{
+ color: #fff;
+}
+footer .social-links a:hover {
+
+  color: #fff;
+  text-decoration: none;
+}
+footer .social-links a {
+  font-size: 25px;
+  display: inline-block;
+
+  color: black;
+  line-height: 1;
+  padding: 8px 0;
+  margin-right: 4px;
+  border-radius: 5px;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  transition: 0.3s;
+}
+.title{
+
+  width: 800px;
+
+}
+.title h3{
+  line-height: 50px;
+  text-align: center;
+}
+.index-footer{
+  display: flex;
+  height: 50px;
+  background-color: hsla(120, 0%, 0%, 0.7);
+  box-shadow: 0px 1px 3px;
+  margin-top: -50px;
+
+}
+.navbar{
+  float: right;
+  margin-left: 35%;
+}
+#login .index-footer h3{
+  padding-left: 100px;
+  color: #fff;
+
+font-family: 'TR Century Gothic';
+  src: url('TR Century Gothic.ttf');
+
+}
+
+ul li .active{
+  background-color: #555555;
+}
+
+
+</style>
+    </head>
+
+<body id="login">
+
+    <div class="index-footer"><h3>ESLLR</h3>{% include "link.html" %}</div>
+
+
+    <div class="container" style="position: relative">
+		<div class="row-fluid">
+
+			<div class="span6"><div class="title_index">{% include "title_index.html" %} </div></div>
+
+
+			<div class="span6"><div class="pull-right">{% include "login_form.html" %}</div></div>
+
+          <center>
+      		<footer>
+
+
+        <div class="social-links text-center text-md-right pt-3 pt-md-0">
+        <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="youtube"> <i class="fab fa-youtube"></i></a>
+        <a href="#" class="linkedin"><i class="fab fa-linkedin"></i></a>
+      </div>
+
+
+        <div>
+          &copy; 2022,<span> Ethiopian Sign Language Learning and Recognition</span>.All Rights Reserved
+        </div>
+
+      </div>
+		</footer>
+    </div>
+    </center>
+		</div>
+
+
+
+</div>
+</body>
+
+</html>

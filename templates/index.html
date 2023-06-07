@@ -1,0 +1,300 @@
+{% include "header.html" %}
+{% load static %}
+<body>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h2 class="m-0 text-primary"><img src="{% static 'images/esl_logo.png' %}" 
+                alt="ESLL Logo" class="img-circle"
+                style="width: 50px; 
+                opacity: .8;">
+              </i>Ethiopian Sign Language Learning</h2>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
+                <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
+                <a href="{% url 'courses' %}" class="nav-item nav-link">Courses</a>
+                <a href="#" class="nav-item nav-link">Contact</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Signup</a>
+                    <div class="dropdown-menu fade-down m-0">
+                        <a href="{% url 'signup_learner' %}" class="dropdown-item">As a Learner</a>
+                        <a href="{% url 'signup_instructor' %}" class="dropdown-item">As an Instructor</a>
+                    </div>
+                </div>
+                <a href="{% url 'login' %}" class="nav-item nav-link">Login<i class="fa fa-arrow-right ms-3"></i></a>
+    
+                </div>
+                
+            </div>
+
+        </div>
+    </nav>
+    <!-- Navbar End -->
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0 mb-5">
+        <div class="owl-carousel header-carousel position-relative">
+            <div class="owl-carousel-item position-relative">
+                <img class="img-fluid" style="height: 700px;" src="{% static 'images/EthiopianSignLanguage.jpg' %}" alt="">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-sm-5 col-lg-10">
+                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Learn Sign Language</h5>
+                                <h1 class="display-3 text-white animated slideInDown">The Best Online Sign Language Learning Platform</h1>
+                                <p class="fs-5 text-white mb-4 pb-2">We provide sign language cources based on our own curreculem which 
+                                    is prepared based on the Ethiopian and American sign language curriculum.</p>
+                                <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
+                                <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join us Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="owl-carousel-item position-relative">
+                <img class="img-fluid"  style="height: 700px;" src="https://d3i71xaburhd42.cloudfront.net/9237be20c04b19e14db0e7897b3e971c608914dc/7-Figure1-1.png" alt="">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-sm-10 col-lg-8">
+                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Learn Sign Language</h5>
+                                <h1 class="display-3 text-white animated slideInDown">Get Educated Online From Your Home</h1>
+                                <p class="fs-5 text-white mb-4 pb-2">We provide sign language cources based on our own curreculem generated based on the Ethiopian and American sign language curreculems.</p>
+                                <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
+                                <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel End -->
+    <!-- Service Start -->
+
+    <!-- Service End -->
+
+
+    <!-- About Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="img-fluid position-absolute w-100 h-100" src="https://i0.wp.com/www.tekipaperbags.com/wp-content/uploads/2020/04/Teki-Paper-Bags-we-are-a-family-www.tekipaperbags.com750px6.jpg?w=750&ssl=1" alt="" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <h6 class="section-title bg-white text-start text-primary pe-3">About Us</h6>
+                    <h1 class="mb-4">Welcome to ESLLS</h1>
+                    <p class="mb-4">ESLL is a website that provide a sign language tutorial online. Our website give these tutorials based on national and international curriculums. We are using images,gifs and video as a means for giving these tutorials.</p>
+                    <p class="mb-4">In our curriculum we have three levels Beginner, Intermediate and Advanced. User can choose the level they want and learn. We also have exercise in each of these levels to evaluate our learners.</p>
+                    <div class="row gy-2 gx-4 mb-4">
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Skilled Instructors</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Online Classes</p>
+                        </div>
+ 
+
+    
+                        
+                    </div>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Categories Start -->
+
+    <!-- Categories Start -->
+
+
+    <!-- Courses Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Courses</h6>
+                <h1 class="mb-5">Popular Courses</h1>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="course-item bg-light">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid" style="height: 200px;"  src="data:image/jpeg;base64,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"" alt="">
+                            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4 pb-0">
+              
+                            <h5 class="mb-4">ESLL for Beginners</h5>
+                        </div>
+                        <div class="d-flex border-top">
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="course-item bg-light">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid" style="height: 200px;" src="{% static 'images/child.gif' %}" alt="">
+                            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4 pb-0">
+
+                            <h5 class="mb-4">Intermediate</h5>
+                        </div>
+                        <div class="d-flex border-top">
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="course-item bg-light">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid" style="height: 200px;"  src="{% static 'images/howmm.gif' %}" alt="">
+                            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                                <a href="{% url 'courses' %}" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+                                <a href="{% url 'login' %}" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4 pb-0">
+      
+                            <h5 class="mb-4">Advanced</h5>
+                        </div>
+                        <div class="d-flex border-top">
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Courses End -->
+
+
+    <!-- Team Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Instructors</h6>
+                <h1 class="mb-5">Expert Instructors</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item bg-light">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="https://scontent.fadd2-1.fna.fbcdn.net/v/t1.6435-9/57133905_281838842749175_439953128129822720_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=e3f864&_nc_ohc=iFVYMBXpG3gAX_sRUf9&tn=WNpD97xGqWbZbPpe&_nc_ht=scontent.fadd2-1.fna&oh=00_AT-vjy99j8ol6P50n2EIV7nwXRg3vA_zTL_qOvXYOFntRg&oe=62D4D74C" alt="">
+                        </div>
+                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
+                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">Mahlet Teshome</h5>
+                            <small>Beginner Ethiopian Sign Language</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item bg-light">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="{% static 'images/Ibrahim.jpg' %}" alt="">
+                        </div>
+                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
+                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">Ebrahim Mohammed</h5>
+                            <small>Advanced Ethiopian Sign Language</small>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="team-item bg-light">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="{% static 'home/img/team-3.jpg' %}" alt="">
+                        </div>
+                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
+                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">Instructor Name</h5>
+                            <small>Designation</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="team-item bg-light">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="{% static 'home/img/team-4.jpg'%}" alt="">
+                        </div>
+                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
+                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">Instructor Name</h5>
+                            <small>Designation</small>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+
+
+    <!-- Testimonial Start -->
+
+    <!-- Testimonial End -->
+        
+
+    <!-- Footer Start -->
+    {% include "footer.html" %}
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'home/lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'home/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'home/lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'home/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'home/js/main.js' %}"></script>
+</body>
+
+</html>

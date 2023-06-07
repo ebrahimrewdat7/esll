@@ -1,0 +1,49 @@
+		{% block content %}
+<form action="signup_instructor_save" role="form" method="POST"  enctype="multipart/form-data"
+				  id="login_form1" class="form-signin">
+				 {% csrf_token %}
+
+                {{ form.name_of_field.errors }}
+				{%for message in messages%}
+                  <h2>{{message}} </h2>
+                            {% endfor %}
+			<h3 class="form-signin-heading"><i class="icon-lock"></i> Sign up as Instructor</h3>
+	<div class="card-body">
+
+                            {% comment %} Adding Form with All inputs Here {% endcomment %}
+
+
+                            {% for field in form %}
+                                <div class="form-group">
+
+                                    {{ field.errors }}
+                                    {{ field.label_tag }}
+                                    {{ field }}
+
+                                </div>
+                            {% endfor %%}
+                            </div>
+                        <!-- /.card-body -->
+
+                       <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">{{ button_text }}</button>
+                        </div>
+			</form>
+
+			
+
+<a href="{% url 'login' %}" id="btn_login" name="login" class="btn" type="submit"><i class="icon-signin icon-large"></i> Click here to Login</a>
+
+			
+																		<script type="text/javascript">
+														$(document).ready(function(){
+															$('#signup_instructor').tooltip('show'); $('#signup_instructor').tooltip('hide');
+														});
+														</script>
+														<script type="text/javascript">
+														$(document).ready(function(){
+															$('#signup_instructor').tooltip('show'); $('#signup_instructor').tooltip('hide');
+														});
+														</script>
+		
+							{% endblock %}

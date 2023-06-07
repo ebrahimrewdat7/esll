@@ -1,0 +1,109 @@
+{% extends 'admin/base_template.html' %}
+
+{% block page_title %}
+    Add Beginner Sign
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Add Beginner Sign</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    {% url 'add_beginner_sign_save' as action_path %}
+                    {% include 'admin/form_template.html' with messages=messages form=form action_path=action_path button_text="Add Sign" %}
+
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}
+
+  {% block custom_js %}
+    {% comment %} Checking if the sign textForSign already exists or not using Ajax {% endcomment %}
+
+    <script>
+        $(document).ready(function(){
+            // keyup event will be triggered when user leaves keyboard
+            $("#id_textForSign").keyup(function(){
+                var textForSign = $(this).val();
+
+                if(textForSign!=""){
+                    $.ajax({
+                        url : '{% url 'check_textForSign_exist' %}',
+                        type : 'POST',
+                        data : {textForSign:textForSign}
+                    })
+                    .done(function(response){
+                        //console.log(response);
+
+                        if(response == "True"){
+                            $(".textForSign_error").remove();
+                            $("<span class='textForSign_error' style='color: red; padding: 5px; font-weight: bold;'> Sign Already Exist. </span>").insertAfter("#id_textForSign")
+                        }
+                        else{
+                            $(".textForSign_error").remove();
+                            $("<span class='textForSign_error' style='color: green; padding: 5px; font-weight: bold;'> Sign Doesn't Exist. </span>").insertAfter("#id_textForSign")
+                        }
+                    })
+
+                    .fail(function(){
+                        console.log("Failed");
+                    })
+                }
+                else{
+                    $(".textForSign_error").remove();
+                }
+                
+            })
+
+            $("#id_username").keyup(function(){
+                var username = $(this).val();
+                
+                if(username!=""){
+                    $.ajax({
+                        url : '{% url 'check_username_exist' %}',
+                        type : 'POST',
+                        data : {username:username}
+                    })
+                    .done(function(response){
+                        //console.log(response);
+
+                        if(response == "True"){
+                            $(".username_error").remove();
+                            $("<span class='username_error' style='color: red; padding: 5px; font-weight: bold;'> Username Not Available. </span>").insertAfter("#id_username")
+                        }
+                        else{
+                            $(".username_error").remove();
+                            $("<span class='username_error' style='color: green; padding: 5px; font-weight: bold;'> Username Available. </span>").insertAfter("#id_username")
+                        }
+                    })
+
+                    .fail(function(){
+                        console.log("Failed");
+                    })
+                }
+                else{
+                    $(".username_error").remove();
+                }
+                
+            })
+        })
+    </script>
+
+  {% endblock custom_js %}

@@ -1,0 +1,119 @@
+{% include "header.html" %}
+{% load static %}
+<body>
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+      <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+          <h2 class="m-0 text-primary"><img src="{% static 'images/esl_logo.png' %}" 
+              alt="ESLL Logo" class="img-circle"
+              style="width: 50px; 
+              opacity: .8;">
+            </i>Ethiopian Sign Language Learning</h2>
+      </a>
+      <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav ms-auto p-4 p-lg-0">
+              <a href="{% url 'home' %}" class="nav-item nav-link">Home</a>
+              <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
+              <a href="{% url 'courses' %}" class="nav-item nav-link">Courses</a>
+              <a href="#" class="nav-item nav-link">Contact</a>
+              <div class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Signup</a>
+                  <div class="dropdown-menu fade-down m-0">
+                    <a href="{% url 'signup_learner' %}" class="dropdown-item">As a Learner</a>
+                    <a href="{% url 'signup_instructor' %}" class="dropdown-item">As an Instructor</a>
+                  </div>
+              </div>
+              <a href="{% url 'login' %}" class="nav-item nav-link active">Login<i class="fa fa-arrow-right ms-3"></i></a>
+
+              </div>
+              
+          </div>
+
+      </div>
+  </nav>
+
+  <!-- Navbar End -->
+<section class="gradient-custom" style="background-color: #9A616D;">
+
+    <div class="container py-5 ">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-lg col-xl-auto">
+          <div class="card shadow-2-strong card-registration" style="border-radius: 1rem;">
+            <div class="row g-0">
+              <div class="col-md-5 col-lg-5 d-none d-md-block">
+                <img src="{% static 'images/EthiopianSignLanguage.jpg' %}" alt=""
+                  alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+              </div>
+              <div class="col-md-6 col-lg-5 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+
+                  <form action="do_login" method="POST">
+                    {% csrf_token %}
+                    <div class="d-flex align-items-center mb-3 pb-1">
+                      <img class="img-responsive rounded-circle bg-light" style="width:20%" src="{% static 'images/esl_logo.png' %}" alt="">
+                      <span class="h1 fw-bold mb-0">ESLL</span>
+                    </div>
+  
+                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+                    {% if messages %}
+                    <div class="form-group">
+                    <div class="col-12">
+                        {% for message in messages %}
+  
+                            <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                           
+                            </button>
+                            </div>
+                    
+                        {% endfor %}
+                    </div>
+                    </div>
+                    {% endif %}
+              
+  
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control form-control-sm" id="floatingInput" name="username" placeholder="User Name">
+                        <label for="floatingInput">User Name</label>
+                      </div>
+                      <div class="form-floating">
+                        <input type="password" class="form-control form-control-sm" id="floatingPassword" name="password" placeholder="Password">
+                        <label for="floatingPassword">Password</label>
+                      </div>
+  
+                    <div class="pt-1 mb-4">
+                      <button type="submit" class="btn btn-primary btn-sm">Login</button>
+              
+                    </div>
+  
+                    <a class="small text-muted" href="#!">Forgot password?</a>
+                    <p class="mb-2 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#!"
+                        style="color: #393f81;">Register here</a></p>
+                        <div class="row">
+                          <div class="col">
+                            <a href="{% url 'signup_learner' %}" class="btn btn-primary btn-sm">As a Learner</a>
+                            <a href="{% url 'signup_instructor' %}" class="btn btn-primary btn-sm">As a Instructor</a>
+                            
+                            
+                          </div>
+    
+                        </div>
+                        <a href="#!"
+                        style="color: #393f81;"></a></p>
+                    <a href="#!" class="small text-muted">Terms of use.</a>
+                    <a href="#!" class="small text-muted">Privacy policy</a>
+                  </form>
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% include "footer.html" %}

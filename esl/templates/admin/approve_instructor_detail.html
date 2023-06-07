@@ -1,0 +1,68 @@
+{% extends 'admin/base_template.html' %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+    <div class="container-fluid">
+          <!-- Small boxes (Stat box) -->
+            <!-- ./col -->
+       <div class="container">
+          <table class="table table-striped">
+    <thead class="thead-dark">
+    {% if instructor %}
+    {% for instructor in instructor %}
+      <tr>
+          <h4 style="text-align: center;">Instructor Details</h4>
+
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+          <td>First Name</td>
+          <td>{{instructor.user.first_name}}</td>
+      </tr>
+
+      <tr>
+          <td>Last Name</td>
+          <td>{{instructor.user.last_name}}</td>
+      </tr>
+    <tr><td>Phone No</td>
+          <td>{{instructor.phoneNo}}</td>
+    </tr>
+        <tr><td>ID</td>
+          <td><img src="{{instructor.id_pic.url}}" width="120"/></td>
+    </tr>
+            <tr><td>Document</td>
+                <td><a href="{{  instructor.document.url }}">
+                    <button type="button" class="btn btn-success">View Document</button>
+                </a></td>
+    </tr>
+
+<tr><td>
+    <button type="button" class="btn btn-success"
+    onclick=window.location.href="{% url 'approve' instructor.pk %}"
+    >Approve</button>
+
+    <button type="button" class="btn btn-danger"
+    onclick=window.location.href="{% url 'decline' instructor.user.id %}">Decline</button>
+
+    </td></tr>
+
+
+
+{% endfor %}
+{% endif %}
+      {% for message in message %}
+    {{ message }}
+    {% endfor %}
+	</tbody>
+          </table>
+        </div>
+
+    </div><!-- /.container-fluid -->
+</section>
+
+  {% endblock main_content %}

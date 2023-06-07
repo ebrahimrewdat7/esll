@@ -1,0 +1,93 @@
+{% extends 'admin/base_template.html' %}
+
+{% block page_title %}
+    Edit Instructor | Username: {{ instructor.user.username }} | #ID : {{ instructor.user.id }}
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Edit Instructor</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="POST"  action="{% url 'edit_instructor_save' instructor.user.id %}">
+                        {% csrf_token %}
+
+                        
+                                {% comment %} Display Messages {% endcomment %}
+                                {% if messages %}
+                                <div class="form-group">
+                                <div class="col-12">
+                                    {% for message in messages %}
+
+                                        <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                
+                                    {% endfor %}
+                                </div>
+                                </div>
+                                {% endif %}
+                            
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Email address</label>
+                                <input type="email" class="form-control" name="email" disabled value="{{ instructor.user.email }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" name="username" disabled value="{{ instructor.user.username }}">
+                            </div>
+
+                           <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" name="password"  placeholder="Fill only if you want to change Password.">
+                            </div> 
+
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" name="first_name"disabled value="{{ instructor.user.first_name }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" name="last_name" disabled value="{{ instructor.user.last_name }}">
+                                <input type="hidden" name="instructor.user" value="{{ instructor.user.id }}" />
+                            </div>
+
+
+                            
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Update Instructor</button>
+                        </div>
+                    </form>
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}

@@ -1,0 +1,194 @@
+{% extends 'admin/base_template.html' %}
+
+{% block page_title %}
+    Learner Feedback
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">LearnerFeedback</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        {% if messages %}
+                        <div class="form-group">
+                        <div class="col-12">
+                            {% for message in messages %}
+
+                                <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                        
+                            {% endfor %}
+                        </div>
+                        </div>
+                        {% endif %}
+                        <div class="card-body table-responsive p-0">
+                            <table class="table  table-hover text-nowrap">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Learner ID</th>
+                                    <th>Learner Name</th>
+                                    <th>Message</th>
+                                    <th>Sended On</th>
+                                    <th>Reply</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+
+                                {% for feedback in feedbacks %}
+                                <tbody>
+                                <tr>
+                                    <td>{{ feedback.id }}</td>
+                                    <td>{{ feedback.Learner_id.id }}</td>
+                                    <td>{{ feedback.Learner_id.first_name }} {{ feedback.Learner_id.last_name }}</td> 
+                                    <td>{{ feedback.feedback }}</td>
+                                    <td>{{ feedback.created_at }}</td>
+                                    <td>
+                                        {% if feedback.feedback_reply == "" %}
+                                            <button class="btn btn-success reply_open_modal" data-toggle="modal" data-target="#replyModal">Reply</button>
+                                        {% else %}
+                                            {{ feedback.feedback_reply }}
+                                        {% endif %}
+                                        
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
+                                            Delete
+                                        </button>
+    
+                            
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Are you sure? </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                     you really want to delete  learner <strong>{{ learner.first_name }}.</strong>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+                                    <a href="{% url 'delete_learner_feedback' feedback.id %}" type="button" class="btn btn-danger">Delete</a>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                {% endfor %}
+
+                            </table>
+                        </div>
+                    
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+      {% comment %} Modal to Reply Feedback {% endcomment %}
+      <!-- Modal -->
+        <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reply Feedback</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Reply to: <b><span id="reply_name"></span></b></p>
+                <input type="hidden" id="reply_id" name="reply_id" />
+                <textarea class="form-control" rows="5" id="reply_message"></textarea>
+            </div>
+            <div class="modal-footer">
+                {% comment %} <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> {% endcomment %}
+                <button type="button" class="btn btn-primary btn-block" id="reply_button">Reply</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+  {% endblock main_content %}
+
+  {% comment %} Custom JS to Identify the Reply and Post Reply {% endcomment %}
+
+  {% block custom_js %}
+    <script>
+        $(document).ready(function(){
+            $(".reply_open_modal").click(function(){
+                // Getting Value from Table
+                var id = $(this).parents("tr").children("td:eq(0)").text(); //Getting Selected Row ID (Frist Column)
+                var name = $(this).parents("tr").children("td:eq(2)").text(); //Getting Selected Name (3rd Column)
+                
+                // Adding the Value from Table to Modal form
+                $("#reply_id").val(id);
+                $("#reply_name").text(name);
+            });
+
+            $(document).on("click", "#reply_button", function(){
+                //Disabling the Button while data is being saved in Server
+                $(this).attr("disabled", "disabled")
+                $(this).text("Sending Reply...")
+
+                //console.log("SAVE")
+                
+
+                var id=$("#reply_id").val();
+                var reply=$("#reply_message").val();
+                //console.log(student_data);
+
+                // Saving Attendance Data into Database
+
+                $.ajax({
+                    url:'{% url 'learner_feedback_message_reply' %}',
+                    type:'POST',
+                    data:{id:id, reply:reply},
+                })
+
+                
+                .done(function(response){
+                    
+                    if(response=="True")
+                    {
+                        alert("Reply Sent!")
+                    }
+                    else
+                    {
+                        alert("Failed to Send Reply!")
+                    }
+                    location.reload()
+                    
+                    //console.log(response)
+                })
+
+                .fail(function(){
+                    alert("Error in Sending Feedback Reply.")
+                })
+
+            })
+
+        })
+    </script>
+  {% endblock custom_js %}

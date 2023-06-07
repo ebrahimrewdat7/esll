@@ -1,0 +1,125 @@
+{% extends 'admin/base_template.html' %}
+
+{% block page_title %}
+    Manage Learner
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <a class="btn btn-primary" href="{% url 'add_learner' %}" role="button">+ Add Learner</a> <br/>&nbsp;
+            
+                             {% if messages %}
+                                <div class="form-group">
+                                <div class="col-12">
+                                    {% for message in messages %}
+
+                                        <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                
+                                    {% endfor %}
+                                </div>
+                                </div>
+                                {% endif %}
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Learner Details</h3>
+
+                            <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px; background: white; ">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                <div class="input-group-append">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-striped table-hover table-bordered text-nowrap" cellspacing="0">
+                            <thead>
+                                <tr>
+                                <th >ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Date Joined</th>
+                                <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for learner in learners %}
+                                <tr>
+                                <td>{{ learner.id }}</td>
+                                <td>{{ learner.first_name }}</td>
+                                <td>{{ learner.last_name }}</td>
+                                <td>{{ learner.username }}</td>
+                                <td>{{ learner.email }}</td>
+                                <td>{{ learner.date_joined }}</td>
+                                <td>
+                                    
+                                    <a href="{% url 'edit_learner' learner.id %}" class="btn btn-success">Edite</a>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
+                                        Delete
+                                    </button>
+
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Are you sure? </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                 you really want to delete  learner <strong>{{ learner.first_name }}.</strong>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+                                <a href="{% url 'delete_learner' learner.id %}" type="button" class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                                </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                  <td class="bg-light text-center font-italic" colspan="10">There is no learners yet.</td>
+                                </tr>
+                                {% endfor %}
+                                
+                            </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+ 
+
+       
+  {% endblock main_content %}
